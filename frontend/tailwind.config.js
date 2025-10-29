@@ -1,18 +1,18 @@
 // import svgToDataUri from "mini-svg-data-uri";
 // ---- UNIVERSAL FIX FOR mini-svg-data-uri ----
-import * as miniSvg from "mini-svg-data-uri";
+// import * as miniSvg from "mini-svg-data-uri";
 
-// Try every possible export style and pick the function
-const svgToDataUri =
-  typeof miniSvg === "function"
-    ? miniSvg
-    : typeof miniSvg.default === "function"
-    ? miniSvg.default
-    : typeof miniSvg.svgToDataURI === "function"
-    ? miniSvg.svgToDataURI
-    : () => {
-        throw new Error("mini-svg-data-uri: no valid export found");
-      };
+function svgToDataUri(svg) {
+  return (
+    "data:image/svg+xml," +
+    encodeURIComponent(svg)
+      .replace(/%0A/g, "") // remove newlines
+      .replace(/%20/g, " ") // preserve spaces
+      .replace(/%3D/g, "=")
+      .replace(/%3A/g, ":")
+      .replace(/%2F/g, "/")
+  );
+}
 import { default as flattenColorPalette } from "tailwindcss/lib/util/flattenColorPalette";
 
 /** @type {import('tailwindcss').Config} */
