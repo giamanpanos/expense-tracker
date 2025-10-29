@@ -1,6 +1,5 @@
 // import svgToDataUri from "mini-svg-data-uri";
-// ---- UNIVERSAL FIX FOR mini-svg-data-uri ----
-// import * as miniSvg from "mini-svg-data-uri";
+// we commented out the above import and replaced it with the following function to fix the render issue according to chatGPT
 
 function svgToDataUri(svg) {
   return (
